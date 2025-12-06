@@ -1,0 +1,16 @@
+payload,label
+"<script>alert(1)</script>",xss
+"<img src=x onerror=alert(1)>",xss
+"javascript:alert('hi')",xss
+"union select username,password from users",sql
+"' OR 1=1 --",sql
+"drop table users",sql
+"admin' OR '1'='1",sql
+"/login incorrect password",bruteforce
+"/login attempt failed",bruteforce
+"failed login for user",bruteforce
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",dos
+"GET /index 500 times",dos
+"/admin attempt access",path_traversal
+"../../etc/passwd",path_traversal
+"..\\..\\windows\\system32",path_traversal
