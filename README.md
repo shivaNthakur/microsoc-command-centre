@@ -1,3 +1,4 @@
+```text
 src/
 ├─ app/
 │  ├─ api/
@@ -71,3 +72,4 @@ src/
 └─ utils/
    ├─ logger.ts                    ← winston logger (optional)
    └─ constants.ts                 ← app constants
+```
