@@ -7,7 +7,7 @@ from tensorflow.keras.layers import LSTM, Dense, Dropout
 import pickle
 
 # Load dataset
-df = pd.read_csv("lstm_threat_dataset.csv")
+df = pd.read_csv("D:\p3-threat-engine\microsoc-command-centre\ml\lstm_threat_dataset.csv")
 
 # Drop timestamp
 df = df.drop(columns=['Timestamp'])

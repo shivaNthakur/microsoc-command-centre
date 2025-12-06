@@ -19,3 +19,8 @@ def is_blocked(ip):
         return int(expire_time) > int(time.time())
     except:
         return False
+
+def block_ip(ip, duration=600):
+    
+    add_block(ip, duration)
+
