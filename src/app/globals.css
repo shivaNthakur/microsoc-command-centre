@@ -5,6 +5,15 @@
   --foreground: #171717;
 }
 
+html.dark {
+  background-color: #020617;
+  color: white;
+}
+
+html.light {
+  background-color: white;
+  color: black;
+}
 
 
 @theme inline {

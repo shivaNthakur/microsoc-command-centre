@@ -129,6 +129,7 @@ export default function LoginPage() {
             className="bg-[#0b1020] p-10 rounded-2xl w-full max-w-md 
             shadow-[0_0_30px_#1e3a8a] relative z-10"
           >
+            
             <motion.h2
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
