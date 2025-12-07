@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // schema part later not necessary
 // bcryptjs,zod,regex,jwt,axios
 // type.ts for assisgning types
@@ -20,3 +21,4 @@
 
 
 // src/app/api/admin/analysts/p,r,a : these are the routes for handling requests of signin
+

@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { CustomUser } from "./app/api/auth/[...nextauth]/options";
 
 
-export async function middlewar(request:NextRequest) {
+export async function middleware(request:NextRequest) {
     const {pathname} = request.nextUrl;
     //add login route of admin or genral login
     if(pathname == '/' || pathname == "/")  {
