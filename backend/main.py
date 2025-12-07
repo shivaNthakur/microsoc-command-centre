@@ -1,27 +1,25 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
-from typing import Optional, List
+from models.Log import Log
+from rules_engine.apply_rules import process_log
 
 app = FastAPI()
-
-class Log(BaseModel):
-    tool: str
-    source_ip: Optional[str] = None
-    target: Optional[str] = None
-    open_ports: Optional[List[int]] = None
-    path: Optional[str] = None
-    payload: Optional[str] = None
-    severity: str
-
-logs = []   # temporary storage
+ALL_LOGS = []
 
 @app.post("/logs/ingest")
 def ingest(log: Log):
-    logs.append(log.dict())
+    ALL_LOGS.append(log)
+
     print("\n📥 LOG RECEIVED:")
     print(log.dict())
-    return {"status": "ok"}
+
+    # run classification engine
+    incident = process_log(log)
+
+    return {
+        "status": "ok",
+        "incident": incident.title if incident else None
+    }
 
 @app.get("/logs")
-def get_all_logs():
-    return logs
+def get_logs():
+    return [l.dict() for l in ALL_LOGS]
