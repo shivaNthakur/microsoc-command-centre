@@ -24,30 +24,35 @@ export interface AttackLogData {
 
 export async function publishAttackLogToRedis(logData: any): Promise<void> {
   try {
+    // Normalize field names (handle both snake_case and camelCase)
+    const attackType = logData.attack_type || logData.attackType;
+    const severity = logData.severity || 'MEDIUM';
+    const ip = logData.ip || logData.sourceIP;
+    
     // Get geo-location
-    const geo = await getIPGeoLocation(logData.ip);
+    const geo = await getIPGeoLocation(ip);
     
     // Update IP statistics
-    const ipStats = await updateIPStats(
-      logData.ip,
-      logData.attackType,
-      logData.severity,
+    await updateIPStats(
+      ip,
+      attackType,
+      severity,
       logData.is_blocked_now || false
     );
     
     // Prepare data for publishing
-    const attackData: AttackLogData = {
-      id: logData._id?.toString() || logData.id,
-      ip: logData.ip || logData.sourceIP,
-      attackType: logData.attackType,
-      severity: logData.severity,
-      timestamp: logData.timestamp || new Date(),
-      path: logData.path,
-      method: logData.method,
-      status: logData.status,
+    const attackData = {
+      _id: logData._id?.toString() || logData.id,
+      ip,
+      attack_type: attackType,
+      severity,
+      timestamp: logData.timestamp || Date.now(),
+      path: logData.path || '/',
+      method: logData.method || 'GET',
+      status: logData.status || 'BLOCK',
       reason: logData.reason,
       suggestion: logData.suggestion,
-      isBlocked: logData.is_blocked_now || false,
+      is_blocked_now: logData.is_blocked_now || false,
       geo: geo ? {
         country: geo.country,
         city: geo.city,
@@ -55,6 +60,8 @@ export async function publishAttackLogToRedis(logData: any): Promise<void> {
         lng: geo.lng,
       } : undefined,
     };
+    
+    console.log('📤 Publishing attack log to Redis:', { ip, attack_type: attackType, severity });
     
     // Publish to Redis channel
     await publishAttackLog(attackData);

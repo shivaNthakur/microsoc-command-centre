@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { dbConnect } from '@/lib/dbConnect';
-import LogModel from '@/models/AttackLog';
+import { AttackLogModel } from '@/models/AttackLog';
 import { publishAttackLogToRedis } from '@/services/realtimePublisher';
 
 export async function POST(req: NextRequest) {
@@ -31,19 +31,17 @@ export async function POST(req: NextRequest) {
         ? new Date(logData.timestamp * 1000) 
         : new Date();
 
-      const log = new LogModel({
-        timestamp,
-        attackType,
-        sourceIP: logData.ip,
+      const log = new AttackLogModel({
+        ip: logData.ip,
         path: logData.path || '/',
         method: logData.method || 'GET',
-        status: logData.status || 'DETECTED',
+        status: logData.status || 'BLOCK',
+        attack_type: attackType || null,
         severity,
-        reason: logData.reason,
-        suggestion: logData.suggestion,
+        timestamp: Math.floor(logData.timestamp || Date.now() / 1000),
+        reason: logData.reason || 'Security detection',
+        suggestion: logData.suggestion || null,
         is_blocked_now: logData.is_blocked_now || false,
-        targetSystem: logData.path || '/',
-        logStatus: 'New',
       });
 
       const savedLog = await log.save();
@@ -52,8 +50,8 @@ export async function POST(req: NextRequest) {
       // Publish to Redis for real-time updates (non-blocking)
       publishAttackLogToRedis({
         _id: savedLog._id,
-        ip: savedLog.sourceIP,
-        attackType: savedLog.attackType,
+        ip: savedLog.ip,
+        attack_type: savedLog.attack_type,
         severity: savedLog.severity,
         timestamp: savedLog.timestamp,
         path: savedLog.path,
@@ -101,13 +99,13 @@ export async function GET(req: NextRequest) {
     if (attackType) query.attackType = attackType;
     if (severity) query.severity = severity.toUpperCase();
 
-    const logs = await LogModel.find(query)
+    const logs = await AttackLogModel.find(query)
       .sort({ timestamp: -1 })
       .limit(limit)
       .skip(skip)
       .lean();
 
-    const total = await LogModel.countDocuments(query);
+    const total = await AttackLogModel.countDocuments(query);
 
     return NextResponse.json(
       { 

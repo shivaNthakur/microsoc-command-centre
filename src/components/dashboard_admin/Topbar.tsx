@@ -11,7 +11,7 @@ export default function Topbar() {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const res = await fetch("/api/admin/pending-requests", { cache: "no-store" });
+        const res = await fetch("/api/admin/analysts/pending", { cache: "no-store" });
         const data = await res.json();
         setHasNotification(data.requests && data.requests.length > 0);
       } catch (error) {

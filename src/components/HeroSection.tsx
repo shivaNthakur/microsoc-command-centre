@@ -11,7 +11,9 @@ const HeroSection = () => {
         </p>
         <p className="text-base md:text-lg mt-4 text-white font-normal inter-var text-center text-2xl">
           Guardian of the Grid, Defender of the Server Realm.
-          <p className=''>With MicroSOC at his command, the Blue Ranger scans every port, hunts every intrusion, analyzes every suspicious pattern, and shields the Morphin Grid from evolving cyber threats—keeping the Ranger systems resilient, fortified, and unbreakable.</p>
+        </p>
+        <p className="text-base md:text-lg mt-2 text-white font-normal inter-var text-center">
+          With MicroSOC at his command, the Blue Ranger scans every port, hunts every intrusion, analyzes every suspicious pattern, and shields the Morphin Grid from evolving cyber threats—keeping the Ranger systems resilient, fortified, and unbreakable.
         </p>
 
       </WavyBackground>

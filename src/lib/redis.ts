@@ -1,51 +1,38 @@
-import Redis from "ioredis";
+import { createClient } from 'redis';
 
-const REDIS_URL = process.env.REDIS_URL || "redis://localhost:6379";
+const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
 
-let redisClient: Redis | null = null;
-let redisSubscriber: Redis | null = null;
+let redisClient: ReturnType<typeof createClient> | null = null;
 
-export function getRedisClient(): Redis {
+export function getRedisClient() {
   if (!redisClient) {
-    redisClient = new Redis(REDIS_URL, {
-      retryStrategy(times) {
-        if (times > 10) return null;
-        return Math.min(times * 500, 2000);
-      },
-    });
-
-    redisClient.on("connect", () => console.log("✅ Redis Client Connected"));
-    redisClient.on("error", (err) => console.error("❌ Redis Client Error:", err));
+    redisClient = createClient({ url: REDIS_URL });
+    redisClient.on('error', (err) => console.error('❌ Redis Client Error:', err));
+    redisClient.connect().then(() => console.log('✅ Redis Client Connected')).catch(err => console.error('❌ Redis connect failed:', err));
   }
   return redisClient;
 }
 
-export function getRedisSubscriber(): Redis {
-  if (!redisSubscriber) {
-    redisSubscriber = new Redis(REDIS_URL);
-  }
-  return redisSubscriber;
-}
-
-// Channels
 export const REDIS_CHANNELS = {
-  ATTACK_LOGS: "soc:attack_logs",
-  INCIDENTS: "soc:incidents",
-  NOTIFICATIONS: "soc:notifications",
-  ANALYST_ACTIONS: "soc:analyst_actions",
+  ATTACK_LOGS: 'soc:attack_logs',
+  INCIDENTS: 'soc:incidents',
+  NOTIFICATIONS: 'soc:notifications',
+  ANALYST_ACTIONS: 'soc:analyst_actions',
 } as const;
 
-// Publish event
 export async function publishAttackLog(data: any) {
   const client = getRedisClient();
-  await client.publish(REDIS_CHANNELS.ATTACK_LOGS, JSON.stringify(data));
-  console.log("📡 Published attack log");
+  try {
+    await client.publish(REDIS_CHANNELS.ATTACK_LOGS, JSON.stringify(data));
+  } catch (err) {
+    console.error('❌ Failed to publish attack log:', err);
+  }
 }
 
 // Cache helpers
 export async function cacheSet(key: string, value: any, expiry = 3600) {
   const client = getRedisClient();
-  await client.set(key, JSON.stringify(value), "EX", expiry);
+  await client.set(key, JSON.stringify(value), { EX: expiry });
 }
 
 export async function cacheGet(key: string) {
@@ -60,6 +47,8 @@ export async function cacheDel(key: string) {
 }
 
 export async function closeRedis() {
-  if (redisClient) await redisClient.quit();
-  if (redisSubscriber) await redisSubscriber.quit();
+  if (redisClient) {
+    await redisClient.quit();
+    redisClient = null;
+  }
 }
