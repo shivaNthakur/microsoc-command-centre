@@ -1,34 +1,75 @@
-// these are the routes for handling requests of signin
-
-// app/api/admin/analysts/reject/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { dbConnect } from "@/lib/dbConnect";
-import UserModel from "@/models/User";
+import User from "@/models/User";
 
 export async function POST(req: NextRequest) {
-  await dbConnect();
+  try {
+    await dbConnect();
 
-  const { userId } = await req.json();
+    const { id } = await req.json();
 
-  const user = await UserModel.findById(userId);
+    if (!id) {
+      return NextResponse.json(
+        { success: false, message: "User ID is required" },
+        { status: 400 }
+      );
+    }
 
-  if (!user || user.role !== "analyst") {
+    const user = await User.findByIdAndDelete(id);
+
+    if (!user) {
+      return NextResponse.json(
+        { success: false, message: "Analyst not found" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: "Analyst request rejected successfully",
+      user,
+    });
+  } catch (error) {
+    console.error("Error rejecting analyst:", error);
     return NextResponse.json(
-      { success: false, message: "Analyst not found" },
-      { status: 404 }
+      { success: false, message: error instanceof Error ? error.message : "Internal server error" },
+      { status: 500 }
     );
   }
-
-  // Option 1: soft reject
-  user.isActive = false;
-  user.isApproved = false;
-  await user.save();
-
-  // Option 2: hard delete
-  // await user.deleteOne();
-
-  return NextResponse.json(
-    { success: true, message: "Analyst rejected / deactivated" },
-    { status: 200 }
-  );
 }
+
+
+// // these are the routes for handling requests of signin
+
+// // app/api/admin/analysts/reject/route.ts
+// import { NextRequest, NextResponse } from "next/server";
+// import { dbConnect } from "@/lib/dbConnect";
+// import UserModel from "@/models/User";
+
+// export async function POST(req: NextRequest) {
+//   await dbConnect();
+
+//   const { userId } = await req.json();
+
+//   const user = await UserModel.findById(userId);
+
+//   if (!user || user.role !== "analyst") {
+//     return NextResponse.json(
+//       { success: false, message: "Analyst not found" },
+//       { status: 404 }
+//     );
+//   }
+
+//   // Option 1: soft reject
+//   user.isActive = false;
+//   user.isApproved = false;
+//   await user.save();
+
+//   // Option 2: hard delete
+//   // await user.deleteOne();
+
+//   return NextResponse.json(
+//     { success: true, message: "Analyst rejected / deactivated" },
+//     { status: 200 }
+//   );
+// }

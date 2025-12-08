@@ -28,7 +28,9 @@ export const authOptions: NextAuthOptions = {
 
         await dbConnect();
 
-        const user = await UserModel.findOne({ email: credentials.email });
+        // Normalize email before lookup
+        const normalizedEmail = credentials.email.toLowerCase().trim();
+        const user = await UserModel.findOne({ email: normalizedEmail });
 
         if (!user) {
           throw new Error("User not found");

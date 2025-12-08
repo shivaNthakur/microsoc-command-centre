@@ -15,8 +15,10 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { email, password, loginAs } = loginSchema.parse(body);
 
-    // 2. Find user
-    const user = await UserModel.findOne({ email });
+    // 2. Find user (normalize email to lowercase + trim)
+    const normalizedEmail = email.toLowerCase().trim();
+    const user = await UserModel.findOne({ email: normalizedEmail });
+    console.log("Login attempt:", normalizedEmail, "Found:", !!user)
 
     if (!user) {
       return NextResponse.json(
@@ -65,10 +67,26 @@ export async function POST(req: NextRequest) {
         id: user._id.toString(),
         email: user.email,
         role: user.role,
+        name: user.name,
+        isApproved: user.isApproved,
       },
-      process.env.JWT_SECRET!,
+      process.env.NEXTAUTH_SECRET!, // Use NEXTAUTH_SECRET so getToken() can decode it
       { expiresIn: "7d" }
     );
+
+    // Set a cookie so middleware's `getToken` can read the JWT.
+    // Cookie name must match NextAuth's session token cookie name.
+    const maxAge = 7 * 24 * 60 * 60; // 7 days in seconds
+    
+    // For NextAuth v4 with JWT strategy, use `next-auth.session-token` for dev
+    // or adjust based on your NEXTAUTH_URL environment
+    const cookieName = process.env.NODE_ENV === "production" 
+      ? "__Secure-next-auth.session-token" 
+      : "next-auth.session-token";
+    
+    const cookie = `${cookieName}=${token}; Path=/; HttpOnly; Max-Age=${maxAge}; SameSite=Lax${
+      process.env.NODE_ENV === "production" ? "; Secure" : ""
+    }`;
 
     // 6. Update lastLogin timestamp
     user.lastLogin = new Date();
@@ -88,7 +106,7 @@ export async function POST(req: NextRequest) {
           isApproved: user.isApproved,
         },
       },
-      { status: 200 }
+      { status: 200, headers: { "Set-Cookie": cookie } }
     );
   } catch (error: any) {
     console.error("Login Error:", error);

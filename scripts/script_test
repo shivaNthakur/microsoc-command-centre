@@ -1,0 +1,136 @@
+microsoc-command-centre/
+├─ `components.json`
+├─ `eslint.config.mjs`
+├─ `FRONTEND.MD`
+├─ `IMPLEMENT.MD`
+├─ `next-env.d.ts`
+├─ `next.config.ts`
+├─ `package.json`
+├─ `postcss.config.mjs`
+├─ `PROJECTSETUP.MD`
+├─ `README.md`
+├─ `tsconfig.json`
+├─ public/
+│  └─ icons/
+└─ src/
+   ├─ `middleware.ts`
+   ├─ app/
+   │  ├─ `globals.css`
+   │  ├─ `layout.tsx`
+   │  ├─ `page.tsx`
+   │  ├─ `(auth)/`
+   │  │  ├─ login/
+   │  │  │  └─ `page.tsx`
+   │  │  └─ signup/
+   │  │     └─ `page.tsx`
+   │  ├─ admin/
+   │  │  ├─ dashboard/
+   │  │  │  ├─ `page.tsx`
+   │  │  │  └─ location/
+   │  │  │     └─ `page.tsx`
+   │  │  ├─ notifications/
+   │  │  │  └─ `page.tsx`
+   │  │  ├─ pending-analysts/
+   │  │  └─ users/
+   │  ├─ analyst/
+   │  │  ├─ dashboard/
+   │  │  │  └─ `page.tsx`
+   │  │  ├─ incidents/
+   │  │  └─ logs/
+   │  ├─ api/
+   │  │  ├─ admin/
+   │  │  │  ├─ analysts/
+   │  │  │  │  ├─ approve/
+   │  │  │  │  │  └─ `route.ts`
+   │  │  │  │  ├─ pending/
+   │  │  │  │  │  └─ `route.ts`
+   │  │  │  │  └─ reject/
+   │  │  │  │     └─ `route.ts`
+   │  │  │  ├─ dashboard/
+   │  │  │  │  ├─ geo/
+   │  │  │  │  │  └─ `route.ts`
+   │  │  │  │  ├─ ip-stats/
+   │  │  │  │  │  └─ `route.ts`
+   │  │  │  │  └─ summary/
+   │  │  │  │     └─ `route.ts`
+   │  │  ├─ auth/
+   │  │  │  ├─ `[...nextauth]/`
+   │  │  │  │  ├─ `options.ts`
+   │  │  │  │  └─ `route.ts`
+   │  │  │  ├─ login/
+   │  │  │  │  └─ `route.ts`
+   │  │  │  └─ signup/
+   │  │  │     └─ `route.ts`
+   │  │  ├─ dashboard/
+   │  │  │  ├─ attacks/
+   │  │  │  │  └─ `route.ts`
+   │  │  │  ├─ dns/
+   │  │  │  │  └─ `route.ts`
+   │  │  │  ├─ exfiltration/
+   │  │  │  │  └─ `route.ts`
+   │  │  │  ├─ injections/
+   │  │  │  │  └─ `route.ts`
+   │  │  │  └─ ips/
+   │  │  │     └─ `route.ts`
+   │  │  ├─ incidents/
+   │  │  │  ├─ assign/
+   │  │  │  │  └─ `route.ts`
+   │  │  │  ├─ create/
+   │  │  │  │  └─ `route.ts`
+   │  │  │  ├─ list/
+   │  │  │  │  └─ `route.ts`
+   │  │  │  └─ update/
+   │  │  │     └─ `route.ts`
+   │  │  ├─ logs/
+   │  │  │  └─ ingest/
+   │  │  │     └─ `route.ts`
+   │  │  ├─ socket/
+   │  │  │  └─ `route.ts`
+   │  │  └─ users/
+   │  │     └─ `route.ts`
+   ├─ components/
+   │  ├─ `AboutSection.tsx`
+   │  ├─ `FeaturesSection.tsx`
+   │  ├─ `FooterSection.tsx`
+   │  ├─ `HeroSection.tsx`
+   │  ├─ `NavBar.tsx`
+   │  ├─ dashboard_admin/
+   │  │  ├─ `AdminDashboard.tsx`
+   │  │  ├─ `Globe.tsx`
+   │  │  ├─ `Sidebar.tsx`
+   │  │  └─ `Topbar.tsx`
+   │  └─ ui/
+   │     ├─ `3d-card.tsx`
+   │     ├─ `aurora-background.tsx`
+   │     ├─ `hover-border-gradient.tsx`
+   │     ├─ `sticky-scroll-reveal.tsx`
+   │     └─ `wavy-background.tsx`
+   ├─ context/
+   │  └─ `AuthProvider.tsx`
+   ├─ lib/
+   │  ├─ `auth.ts`
+   │  ├─ `dbConnect.ts`
+   │  ├─ `redis.ts`
+   │  ├─ `socket.ts`
+   │  └─ `utils.ts`
+   ├─ models/
+   │  ├─ `AttackLog.ts`
+   │  ├─ `Incident.ts`
+   │  └─ `User.ts`
+   ├─ schema/
+   │  ├─ `auth.schema.ts`
+   │  └─ `userschema.ts`
+   ├─ services/
+   │  ├─ `ipAggregator.ts`
+   │  └─ `realtimePublisher.ts`
+   ├─ socket/
+   │  └─ `index.ts`
+   ├─ types/
+   │  ├─ `api-response.ts`
+   │  ├─ `incident.ts`
+   │  ├─ `log.ts`
+   │  └─ `user.ts`
+   └─ utils/
+      ├─ `constants.ts`
+      ├─ `ipInfo.ts`
+      └─ `logger.ts`
