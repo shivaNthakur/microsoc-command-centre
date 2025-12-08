@@ -22,11 +22,7 @@ const itemVariants = {
     y: 0,
     opacity: 1,
     scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 10,
-    },
+    transition: { type: "spring", stiffness: 100, damping: 10 },
   },
 };
 
@@ -35,15 +31,12 @@ const buttonVariants = {
   visible: {
     y: 0,
     opacity: 1,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 10,
-    },
+    transition: { type: "spring", stiffness: 100, damping: 10 },
   },
 };
 
-export default function LoginPage() {
+export default function SignupPage() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -57,16 +50,13 @@ export default function LoginPage() {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    const rotateAmount = 25; 
+    const rotateAmount = 25;
 
     setRotateY(((x / rect.width) - 0.5) * rotateAmount * 2);
     setRotateX(-((y / rect.height) - 0.5) * rotateAmount * 2);
   };
 
-  const handleHoverStart = () => {
-    setHoverScale(1.06); 
-  };
-
+  const handleHoverStart = () => setHoverScale(1.06);
   const handleHoverEnd = () => {
     setHoverScale(1);
     setRotateX(0);
@@ -75,7 +65,7 @@ export default function LoginPage() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log({ email, password });
+    console.log({ name, email, password });
   };
 
   return (
@@ -90,7 +80,8 @@ export default function LoginPage() {
             className="relative w-[50rem] h-[60rem]"
           >
             <div className="absolute left-20 top-1/2 -translate-y-1/2 
-            w-[350px] h-[400px] bg-blue-500/30 blur-[120px] rounded-full"></div>
+              w-[350px] h-[400px] bg-blue-500/30 blur-[120px] rounded-full">
+            </div>
 
             <Image
               src="/power-ranger3.png"
@@ -101,16 +92,13 @@ export default function LoginPage() {
           </motion.div>
         </div>
 
-        <div className="w-full md:w-1/2 flex items-center justify-start pl-8 relative hover:scale-1.02">
+        <div className="w-full md:w-1/2 flex items-center justify-start pl-8 relative">
 
           <motion.div
             onMouseMove={handleMouseMove}
             onMouseLeave={handleHoverEnd}
             onHoverStart={handleHoverStart}
-            style={{ 
-              transformStyle: "preserve-3d",
-              transformOrigin: "top", 
-            }}
+            style={{ transformStyle: "preserve-3d", transformOrigin: "top" }}
             animate={{
               rotateX,
               rotateY,
@@ -129,34 +117,53 @@ export default function LoginPage() {
             className="bg-[#0b1020] p-10 rounded-2xl w-full max-w-md 
             shadow-[0_0_30px_#1e3a8a] relative z-10"
           >
-            
+
+    
             <motion.h2
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.5 }}
-              className="text-3xl font-semibold text-center mb-8 
+              className="text-3xl font-semibold text-center mb-8
               text-blue-400 drop-shadow-[0_0_10px_#3b82f6]"
             >
-              Login
+              Sign Up
             </motion.h2>
 
-  
+       
             <motion.form
               onSubmit={handleSubmit}
               variants={containerVariants}
               initial="hidden"
               animate="visible"
             >
-          
+      
+              <motion.div variants={itemVariants}>
+                <label className="block text-sm font-medium mb-1 text-blue-300">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  className="w-full mb-5 px-4 py-2 rounded-lg bg-[#111827] text-white
+                  border border-blue-600 focus:border-blue-400
+                  shadow-[0_0_10px_#1e40af] focus:shadow-[0_0_15px_#3b82f6]
+                  outline-none transition-all"
+                  placeholder="Enter your full name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </motion.div>
+
+        
               <motion.div variants={itemVariants}>
                 <label className="block text-sm font-medium mb-1 text-blue-300">
                   Email
                 </label>
                 <input
                   type="email"
-                  className="w-full mb-5 px-4 py-2 rounded-lg bg-[#111827] text-white 
+                  className="w-full mb-5 px-4 py-2 rounded-lg bg-[#111827] text-white
                   border border-blue-600 focus:border-blue-400
-                  shadow-[0_0_10px_#1e40af] focus:shadow-[0_0_15px_#3b82f6] 
+                  shadow-[0_0_10px_#1e40af] focus:shadow-[0_0_15px_#3b82f6]
                   outline-none transition-all"
                   placeholder="Enter your email"
                   value={email}
@@ -165,7 +172,6 @@ export default function LoginPage() {
                 />
               </motion.div>
 
-          
               <motion.div variants={itemVariants}>
                 <label className="block text-sm font-medium mb-1 text-blue-300">
                   Password
@@ -176,23 +182,23 @@ export default function LoginPage() {
                   border border-blue-600 focus:border-blue-400
                   shadow-[0_0_10px_#1e40af] focus:shadow-[0_0_15px_#3b82f6]
                   outline-none transition-all"
-                  placeholder="Enter your password"
+                  placeholder="Create a password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </motion.div>
 
-           
+     
               <motion.button
                 type="submit"
                 variants={buttonVariants}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white 
-                py-2 rounded-lg font-semibold tracking-wider 
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white
+                py-2 rounded-lg font-semibold tracking-wider
                 shadow-[0_0_15px_#2563eb] hover:shadow-[0_0_20px_#3b82f6]
                 transition"
               >
-                Login
+                Create Account
               </motion.button>
             </motion.form>
 
