@@ -1,3 +1,11 @@
+import sys, os
+
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, ROOT_DIR)
+
+print("PYTHONPATH → ", ROOT_DIR)
+
+
 import time
 
 from attacks.nmap_scan.parse_nmap import *

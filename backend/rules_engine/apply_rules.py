@@ -1,9 +1,8 @@
-from models.incident import Incident
-from rules_engine.rules import RULES
+from backend.models.incident import Incident
+from backend.rules_engine.rules import RULES
 
 INCIDENTS = []
 ALL_LOGS = []
-
 
 def process_log(log):
     ALL_LOGS.append(log)
@@ -18,8 +17,6 @@ def process_log(log):
             )
             INCIDENTS.append(incident)
             print("\n🔥 INCIDENT CREATED:", incident.title)
-            print("Severity:", incident.severity)
-            print("Source IP:", incident.source_ip)
             return incident
 
     return None
