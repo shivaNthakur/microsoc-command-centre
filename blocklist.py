@@ -1,26 +1,28 @@
-# blocklist.py
-import redis
+# blocklist.py - Redis Free Version
 import time
-r = redis.Redis(host='localhost', port=6379, db=0)  # DB 0 for blocklist
+import os
 
-def add_block(ip, duration=600):
-    expire_time = int(time.time()) + duration
-    r.set(f"blocked:{ip}", expire_time)
-    r.expire(f"blocked:{ip}", duration)
+BLOCK_DURATION = int(os.getenv("BLOCK_DURATION", 600))  # Default 10 min
+
+# In-memory store (IP -> expiry timestamp)
+BLOCKED_IPS = {}
+
+def add_block(ip, duration=BLOCK_DURATION):
+    BLOCKED_IPS[ip] = time.time() + duration
 
 def remove_block(ip):
-    r.delete(f"blocked:{ip}")
+    if ip in BLOCKED_IPS:
+        del BLOCKED_IPS[ip]
 
 def is_blocked(ip):
-    expire_time = r.get(f"blocked:{ip}")
-    if expire_time is None:
-        return False
-    try:
-        return int(expire_time) > int(time.time())
-    except:
-        return False
+    if ip in BLOCKED_IPS:
+        # Check if block expired
+        if time.time() < BLOCKED_IPS[ip]:
+            return True
+        else:
+            remove_block(ip)
+    return False
 
-def block_ip(ip, duration=600):
-    
+# Alias (keep compatibility)
+def block_ip(ip, duration=BLOCK_DURATION):
     add_block(ip, duration)
-

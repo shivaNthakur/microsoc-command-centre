@@ -1,168 +1,170 @@
-# classifier.py
 import time
 import re
-from rate_limiter import add_request, count_requests, count_unique_paths, count_same_path_hits
-from threat_intel import check_abuseipdb  
-from blocklist import block_ip, is_blocked
-from collections import defaultdict
+import redis
+import json
+import os
+from rate_limiter import count_requests, count_unique_paths
+from threat_intel import check_abuseipdb
 from ml.predict import predict_payload
+from ml.Hybrid_recommend import hybrid_remediation
+from dotenv import load_dotenv
 
-failed_logins = defaultdict(list)
+load_dotenv()
 
-# Regex patterns and thresholds
-SQLI_PATTERNS = re.compile(r"(\bunion\b|\bselect\b|\binformation_schema\b|--|;|'\s+or\s+1=1|\bdrop\b)", re.IGNORECASE)
-XSS_PATTERNS = re.compile(r"(<script\b|onerror=|onload=|javascript:)", re.IGNORECASE)
-SENSITIVE_PATHS = {"/.env", "/wp-login.php", "/admin", "/phpmyadmin", "/backup.zip", "/.git", "/config.php"}
-BOT_UA_KEYWORDS = ["python-requests", "python", "curl", "wget", "nmap", "masscan", "nikto", "sqlmap", "httpclient"]
+# ----------------- REDIS CONFIG -----------------
+REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
+REDIS_PORT = int(os.getenv("REDIS_PORT", 6379))
+LOG_QUEUE = "attack_logs_queue"
+REDIS_BLOCK_TTL = int(os.getenv("REDIS_BLOCK_TTL", 300))
 
-BRUTE_FORCE_THRESHOLD = 10
-BRUTE_FORCE_WINDOW = 60
-DIR_SCAN_THRESHOLD = 20
-DIR_SCAN_WINDOW = 30
-DOS_THRESHOLD = 200
-DOS_WINDOW = 10
-SAME_PATH_HITS_THRESHOLD = 50
-SAME_PATH_HITS_WINDOW = 60
+r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
 
-# Detect brute force
-def detect_brute_force(ip, path, payload, timestamp):
-    if "/login" in path and payload:
-        if payload.get("status") == "failed":
-            failed_logins[ip].append(timestamp)
-        failed_logins[ip] = [t for t in failed_logins[ip] if timestamp - t < 60]
-        if len(failed_logins[ip]) >= 5:
-            return {
-                "status": "BLOCK",
-                "attack_type": "brute_force_login",
-                "severity": "HIGH",
-                "reason": "Multiple failed login attempts detected",
-                "suggestion": "Enable CAPTCHA or Multi-Factor Authentication"
-            }
-    return None
-
-# Main classification function
-def classify_request(ip, path, method, ua, timestamp=None, payload=None):
-    if timestamp is None:
-        timestamp = int(time.time())
-    else:
-        timestamp = int(timestamp)
-
-    path = path or "/"
-    method = (method or "GET").upper()
-    ua = (ua or "").lower()
-
-    # Check blocked IP
-    if is_blocked(ip):
-        return {
-            "status": "BLOCK",
-            "attack_type": "blocked_ip",
-            "severity": "CRITICAL",
-            "reason": "IP is blocked due to previous malicious activity",
-            "suggestion": "Unblock manually or wait for timeout"
-        }
-
-    add_request(ip, path, timestamp)
-
-    # Threat intelligence check
+# ----------------- HELPER FUNCTIONS -----------------
+def push_log(log):
     try:
-        intel = check_abuseipdb(ip)
-        if intel and intel.get("is_malicious"):
-            return {
-                "status":"BLOCK",
-                "attack_type":"threat_intel",
-                "severity":"HIGH",
-                "reason": f"IP listed in AbuseIPDB (confidence {intel.get('confidence')})",
-                "suggestion":"Block IP & investigate"
-            }
-    except Exception:
-        pass
+        r.lpush(LOG_QUEUE, json.dumps(log))
+    except Exception as e:
+        print("Failed to push log to Redis:", e)
 
-    # Combine payload for regex checks
-    combined = str(payload) + " " + str(path) if payload else str(path)
+def block_ip(ip, reason, source, severity="HIGH"):
+    record = {
+        "ip": ip,
+        "reason": reason,
+        "source": source,
+        "severity": severity,
+        "timestamp": int(time.time())
+    }
+    r.set(f"block:{ip}", json.dumps(record), ex=REDIS_BLOCK_TTL)
+    push_log(record)
 
-    # SQLi detection
-    if SQLI_PATTERNS.search(combined):
-        block_ip(ip)
-        return {"status":"BLOCK", "attack_type":"sql_injection", "severity":"HIGH",
-                "reason":"SQL injection pattern detected", "suggestion":"Sanitize inputs and block IP"}
+def is_blocked(ip):
+    return r.exists(f"block:{ip}")
 
-    # XSS detection
-    if XSS_PATTERNS.search(combined):
-        return {"status":"WARN", "attack_type":"xss_attempt", "severity":"MEDIUM",
-                "reason":"Possible XSS payload detected", "suggestion":"Sanitize output and review input"}
+# ----------------- PATTERNS -----------------
+SQLI = re.compile(r"(union|select|information_schema|--|;|'\s*or\s*1=1|drop)", re.IGNORECASE)
+XSS = re.compile(r"(<script|onerror=|onload=|javascript:)", re.IGNORECASE)
+SENSITIVE_PATHS = {"/admin", "/phpmyadmin", "/backup.zip", "/.git"}
 
-    # Sensitive paths
-    lower_path = path.lower()
-    for sp in SENSITIVE_PATHS:
-        if lower_path.startswith(sp) or lower_path == sp:
-            block_ip(ip)
-            return {"status":"BLOCK", "attack_type":"sensitive_path_access", "severity":"HIGH",
-                    "reason":f"Access to sensitive path {sp}", "suggestion":"Block & investigate"}
+# ----------------- CLASSIFIER -----------------
+def classify_request(ip, path, method, ua, payload=None, timestamp=None):
+    timestamp = int(timestamp or time.time())
+    ua = (ua or "").lower()
+    path = path or "/"
 
-    # Brute force
-    bf = detect_brute_force(ip, lower_path, payload, timestamp)
-    if bf:
-        return bf
+    # --- Check if IP is blocked in Redis ---
+    if is_blocked(ip):
+        log = {
+            "status": "BLOCK",
+            "attack_type": "previous_block",
+            "severity": "CRITICAL",
+            "reason": "IP already blocked",
+            "suggestion": "Wait TTL",
+            "ip": ip,
+            "path": path,
+            "method": method,
+            "timestamp": timestamp,
+            "is_blocked_now": True
+        }
+        push_log(log)
+        return log
 
-    if lower_path.startswith("/login") and method == "POST":
-        attempts = count_requests(ip, BRUTE_FORCE_WINDOW)
-        if attempts > BRUTE_FORCE_THRESHOLD:
-            block_ip(ip)
-            return {"status":"BLOCK", "attack_type":"bruteforce", "severity":"HIGH",
-                    "reason":f"{attempts} requests in {BRUTE_FORCE_WINDOW}s targeting login",
-                    "suggestion":"Block IP temporarily"}
+    # --- SQL Injection ---
+    if (payload and SQLI.search(str(payload))) or SQLI.search(path):
+        block_ip(ip, "SQL Injection", "RuleEngine", "HIGH")
+        log = {
+            "status": "BLOCK",
+            "attack_type": "sql_injection",
+            "severity": "HIGH",
+            "reason": "SQL injection detected",
+            "suggestion": "Sanitize input",
+            "ip": ip,
+            "path": path,
+            "method": method,
+            "timestamp": timestamp,
+            "is_blocked_now": True
+        }
+        push_log(log)
+        return log
 
-    # Directory scan
-    uniq = count_unique_paths(ip, DIR_SCAN_WINDOW)
-    if uniq > DIR_SCAN_THRESHOLD:
-        return {"status":"BLOCK", "attack_type":"directory_scan", "severity":"MEDIUM",
-                "reason":f"{uniq} unique paths in {DIR_SCAN_WINDOW}s", "suggestion":"Block or throttle source"}
+    # --- XSS Attempt ---
+    if payload and XSS.search(str(payload)):
+        log = {
+            "status": "WARN",
+            "attack_type": "xss_attempt",
+            "severity": "MEDIUM",
+            "reason": "Possible XSS attempt",
+            "suggestion": "Escape output",
+            "ip": ip,
+            "path": path,
+            "method": method,
+            "timestamp": timestamp,
+            "is_blocked_now": False
+        }
+        push_log(log)
+        return log
 
-    # DDoS
-    reqs = count_requests(ip, DOS_WINDOW)
-    if reqs > DOS_THRESHOLD:
-        block_ip(ip)
-        return {"status":"BLOCK", "attack_type":"dos_flood", "severity":"CRITICAL",
-                "reason":f"{reqs} requests in last {DOS_WINDOW}s", "suggestion":"Apply rate-limiting and block"}
+    # --- Sensitive Paths ---
+    if path.lower() in SENSITIVE_PATHS:
+        block_ip(ip, "Sensitive Path Access", "RuleEngine")
+        log = {
+            "status": "BLOCK",
+            "attack_type": "sensitive_path_access",
+            "severity": "HIGH",
+            "reason": f"Accessed sensitive path {path}",
+            "suggestion": "Restrict access",
+            "ip": ip,
+            "path": path,
+            "method": method,
+            "timestamp": timestamp,
+            "is_blocked_now": True
+        }
+        push_log(log)
+        return log
 
-    # Same path hits
-    same_hits = count_same_path_hits(ip, path)
-    if same_hits > SAME_PATH_HITS_THRESHOLD:
-        return {"status":"WARN", "attack_type":"repeated_same_path", "severity":"MEDIUM",
-                "reason":f"{same_hits} hits to {path} in short time", "suggestion":"Throttle or block if continues"}
-
-    # Bot detection
-    for k in BOT_UA_KEYWORDS:
-        if k in ua:
-            if reqs > (DOS_THRESHOLD // 4):
-                block_ip(ip)
-                return {"status":"BLOCK", "attack_type":"automated_bot", "severity":"HIGH",
-                        "reason":f"Bot UA {k} with high request rate", "suggestion":"Block automation and require challenge"}
-            return {"status":"WARN", "attack_type":"automated_bot", "severity":"LOW",
-                    "reason":f"User-Agent contains {k}", "suggestion":"Monitor or challenge user"}
-
-    # ML model prediction
+    # --- ML / AI Prediction ---
     if payload:
         try:
-            src_ip = payload.get("src_ip")
-            dst_ip = payload.get("dst_ip")
+            src = payload.get("src_ip")
+            dst = payload.get("dst_ip")
             port = payload.get("port")
             protocol = payload.get("protocol")
-            packet_size = payload.get("packet_size")
-            
-            if None not in (src_ip, dst_ip, port, protocol, packet_size):
-                label, confidence = predict_payload(src_ip, dst_ip, port, protocol, packet_size)
-                
-                if confidence > 0.80 and label != "normal":
-                    return {
-                        "status": "WARN" if confidence < 0.92 else "BLOCK",
+            size = payload.get("packet_size")
+
+            if None not in (src, dst, port, protocol, size):
+                label, conf = predict_payload(src, dst, port, protocol, size)
+                if label != "normal" and conf > 0.85:
+                    status = "BLOCK"
+                    log = {
+                        "status": status,
                         "attack_type": f"ML_{label}",
-                        "severity": "HIGH" if confidence > 0.92 else "MEDIUM",
-                        "reason": f"AI model detected possible {label} payload",
-                        "confidence": confidence,
-                        "suggestion": "Review request / apply filter"
+                        "severity": "HIGH",
+                        "reason": f"AI detected {label}",
+                        "suggestion": "Investigate",
+                        "ip": ip,
+                        "path": path,
+                        "method": method,
+                        "timestamp": timestamp,
+                        "confidence": conf,
+                        "is_blocked_now": True
                     }
+                    push_log(log)
+                    return log
         except Exception as e:
             print("ML prediction failed:", e)
 
-    return {"status":"ALLOW", "severity":"NORMAL", "reason":"No rule matched"}
+    # --- Normal Request ---
+    rec = hybrid_remediation("normal")
+    allow_log = {
+        "status": "ALLOW",
+        "attack_type": "normal",
+        "severity": rec["severity"],
+        "reason": "Hybrid passed",
+        "suggestion": rec["suggestion"],
+        "ip": ip,
+        "path": path,
+        "method": method,
+        "timestamp": timestamp,
+        "is_blocked_now": False
+    }
+    push_log(allow_log)
+    return allow_log
