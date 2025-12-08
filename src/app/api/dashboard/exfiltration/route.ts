@@ -12,12 +12,12 @@ export async function GET(req: NextRequest) {
     const startTime = new Date();
     startTime.setHours(startTime.getHours() - hours);
 
-    // Get DNS queries over time (assuming dirscan, gobuster_scan, nikto_scan might involve DNS)
-    const dnsQueriesOverTime = await LogModel.aggregate([
+    // Get data exfiltration attempts over time (assuming sensitive_paths, dos might indicate exfiltration)
+    const exfiltrationOverTime = await LogModel.aggregate([
       {
         $match: {
           timestamp: { $gte: startTime },
-          attackType: { $in: ['dirscan', 'gobuster_scan', 'nikto_scan', 'nmap_scan', 'sensitive_paths'] }
+          attackType: { $in: ['sensitive_paths', 'dos', 'DataExfiltration'] }
         }
       },
       {
@@ -35,47 +35,21 @@ export async function GET(req: NextRequest) {
       }
     ]);
 
-    // Get requested paths/domains
-    const requestedPaths = await LogModel.aggregate([
-      {
-        $match: {
-          timestamp: { $gte: startTime },
-          attackType: { $in: ['dirscan', 'gobuster_scan', 'nikto_scan', 'nmap_scan', 'sensitive_paths'] }
-        }
-      },
-      {
-        $group: {
-          _id: '$path',
-          count: { $sum: 1 }
-        }
-      },
-      {
-        $sort: { count: -1 }
-      },
-      {
-        $limit: 10
-      }
-    ]);
-
     return NextResponse.json(
       {
         success: true,
         data: {
-          dnsQueriesOverTime,
-          requestedPaths: requestedPaths.map(p => ({
-            path: p._id,
-            count: p.count
-          }))
+          exfiltrationOverTime
         }
       },
       { status: 200 }
     );
   } catch (error: any) {
-    console.error('Error fetching DNS data:', error);
+    console.error('Error fetching exfiltration data:', error);
     return NextResponse.json(
       {
         success: false,
-        message: 'Failed to fetch DNS data',
+        message: 'Failed to fetch exfiltration data',
         error: error.message
       },
       { status: 500 }

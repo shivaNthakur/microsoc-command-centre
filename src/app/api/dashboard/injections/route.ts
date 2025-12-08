@@ -12,35 +12,38 @@ export async function GET(req: NextRequest) {
     const startTime = new Date();
     startTime.setHours(startTime.getHours() - hours);
 
-    // Get DNS queries over time (assuming dirscan, gobuster_scan, nikto_scan might involve DNS)
-    const dnsQueriesOverTime = await LogModel.aggregate([
+    // Get injection-related attacks (sqli, xss)
+    const injections = await LogModel.aggregate([
       {
         $match: {
           timestamp: { $gte: startTime },
-          attackType: { $in: ['dirscan', 'gobuster_scan', 'nikto_scan', 'nmap_scan', 'sensitive_paths'] }
+          attackType: { $in: ['sqli', 'xss', 'SQLi', 'XSS'] }
         }
       },
       {
         $group: {
-          _id: {
-            hour: { $hour: '$timestamp' },
-            day: { $dayOfMonth: '$timestamp' },
-            month: { $month: '$timestamp' }
+          _id: '$attackType',
+          count: { $sum: 1 },
+          critical: {
+            $sum: {
+              $cond: [{ $eq: ['$severity', 'CRITICAL'] }, 1, 0]
+            }
           },
-          count: { $sum: 1 }
+          high: {
+            $sum: {
+              $cond: [{ $eq: ['$severity', 'HIGH'] }, 1, 0]
+            }
+          }
         }
-      },
-      {
-        $sort: { '_id.month': 1, '_id.day': 1, '_id.hour': 1 }
       }
     ]);
 
-    // Get requested paths/domains
-    const requestedPaths = await LogModel.aggregate([
+    // Get top injected paths
+    const topInjectedPaths = await LogModel.aggregate([
       {
         $match: {
           timestamp: { $gte: startTime },
-          attackType: { $in: ['dirscan', 'gobuster_scan', 'nikto_scan', 'nmap_scan', 'sensitive_paths'] }
+          attackType: { $in: ['sqli', 'xss', 'SQLi', 'XSS'] }
         }
       },
       {
@@ -57,25 +60,28 @@ export async function GET(req: NextRequest) {
       }
     ]);
 
+    const totalCritical = injections.reduce((sum, item) => sum + item.critical, 0);
+
     return NextResponse.json(
       {
         success: true,
         data: {
-          dnsQueriesOverTime,
-          requestedPaths: requestedPaths.map(p => ({
+          injections,
+          topInjectedPaths: topInjectedPaths.map(p => ({
             path: p._id,
             count: p.count
-          }))
+          })),
+          totalCritical
         }
       },
       { status: 200 }
     );
   } catch (error: any) {
-    console.error('Error fetching DNS data:', error);
+    console.error('Error fetching injection data:', error);
     return NextResponse.json(
       {
         success: false,
-        message: 'Failed to fetch DNS data',
+        message: 'Failed to fetch injection data',
         error: error.message
       },
       { status: 500 }

@@ -1,6 +1,6 @@
 <<<<<<< HEAD
 // schema part later not necessary
-// bcryptjs,zod,regex,jwt,axios
+// bcryptjs,zod,regex,jwt,axios,socket.io,ioredis,express
 // type.ts for assisgning types
 // context folder for provider
 
