@@ -1,9 +1,10 @@
 "use client"
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import Globe from 'react-globe.gl';
-import Navbar from '@/components/NavBar';
+import { useRouter } from "next/navigation";
 
 export default function InteractiveGlobe({ ipList = [] }) {
+  const router = useRouter();
   const globeEl = useRef();
   const [pointsData, setPointsData] = useState([]);
   const [arcsData, setArcsData] = useState([]);
@@ -11,8 +12,8 @@ export default function InteractiveGlobe({ ipList = [] }) {
   const [speed, setSpeed] = useState(0.8);
 
   // ---------- Helper: pseudo-random IP → lat/lng
-  const mockIpToLatLng = (ip:any) => {
-    const seed = ip.split('.').reduce((s:any, x:any) => s + Number(x || 0), 0);
+  const mockIpToLatLng = (ip) => {
+    const seed = ip.split('.').reduce((s, x) => s + Number(x || 0), 0);
     const lat = ((seed * 37) % 180) - 90;
     const lng = ((seed * 91) % 360) - 180;
     return { lat, lng };
@@ -76,7 +77,6 @@ export default function InteractiveGlobe({ ipList = [] }) {
     setTimeout(() => (controls.autoRotateSpeed = origSpeed), 500);
   };
 
-  // ------- AUTO ROTATE -------
   useEffect(() => {
     if (!globeEl.current) return;
     const controls = globeEl.current.controls();
@@ -84,58 +84,90 @@ export default function InteractiveGlobe({ ipList = [] }) {
     controls.autoRotateSpeed = speed;
   }, [autoRotate, speed]);
 
+  const handleLogout = () => {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("token"); // if token exists
+    }
+    router.push("/");
+  };
+
+  const goToDashboard = () => {
+    router.push("/admin/dashboard");
+  };
+
   return (
     <>
-    <Navbar/>
-    <div className="w-full min-h-screen relative overflow-hidden bg-[#010413] text-white">
-      <div className="absolute inset-0 -z-10 opacity-40 bg-[url('https://i.ibb.co/3Tg4xJ8/stars2.png')] bg-cover animate-pulse"></div>
+      <div className="w-full min-h-screen relative overflow-hidden bg-[#010413] text-white">
+        {/* TOP LEFT ABOUT BOX */}
+<div className="absolute top-4 left-6 z-50 bg-black/40 backdrop-blur-lg px-4 py-3 rounded-xl border border-purple-500/40 shadow-[0_0_25px_rgba(168,85,247,0.5)] w-72">
+  <h2 className="text-purple-300 font-semibold">About This Page</h2>
+  <p className="text-gray-200 text-sm mt-1 leading-relaxed">
+    This page visualizes the geographic locations of detected IP addresses on an interactive 3D globe.
+  </p>
+</div>
 
-      <Globe
-        ref={globeEl}
-        globeImageUrl="https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-        bumpImageUrl="https://unpkg.com/three-globe/example/img/earth-topology.png"
-        backgroundColor="rgba(0,0,0,0)"
+        <div className="absolute top-4 right-6 z-50 flex gap-4">
+          <button
+            onClick={goToDashboard}
+            className="px-4 py-2 bg-gray-700 hover:bg-gray-800 transition rounded-lg font-semibold shadow-md"
+          >
+            Dashboard
+          </button>
 
-        // ---- TARGET RED DOTS ----
-        pointsData={pointsData}
-        pointLat={(d) => d.lat}
-        pointLng={(d) => d.lng}
-        pointRadius={() => 0.18}
-        pointAltitude={() => 0.01}
-        pointColor={() => "red"}
+          <button
+            onClick={handleLogout}
+            className="px-4 py-2 bg-blue-700 hover:bg-blue-900 transition rounded-lg font-semibold shadow-md"
+          >
+            Logout
+          </button>
+        </div>
 
-        // ---- ARCS ----
-        arcsData={arcsData}
-        arcStartLat={(d) => d.startLat}
-        arcStartLng={(d) => d.startLng}
-        arcEndLat={(d) => d.endLat}
-        arcEndLng={(d) => d.endLng}
-        arcColor={(d) => d.color}
-        arcDashLength={(d) => d.dashLength}
-        arcDashGap={1}
-        arcDashAnimateTime={1500}
-        arcAltitude={0.25}
-        arcStroke={(d) => d.stroke}
+        {/* Background Stars */}
+        <div className="absolute inset-0 -z-10 opacity-40 bg-[url('https://i.ibb.co/3Tg4xJ8/stars2.png')] bg-cover animate-pulse"></div>
 
-        // ATMOSPHERE
-        showAtmosphere
-        atmosphereColor="rgba(120, 0, 255, 0.4)"
-        atmosphereAltitude={0.25}
+        <Globe
+          ref={globeEl}
+          globeImageUrl="https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+          bumpImageUrl="https://unpkg.com/three-globe/example/img/earth-topology.png"
+          backgroundColor="rgba(0,0,0,0)"
 
-        onPointClick={cameraShake}
-        onArcClick={cameraShake}
-      />
+          pointsData={pointsData}
+          pointLat={(d) => d.lat}
+          pointLng={(d) => d.lng}
+          pointRadius={() => 0.18}
+          pointAltitude={() => 0.01}
+          pointColor={() => "red"}
 
-      {/* INFO CARD */}
-      <div className="absolute left-6 bottom-6 p-4 bg-black/40 backdrop-blur-lg rounded-xl border border-purple-500/40 w-72 z-20">
-        <h2 className="font-bold text-purple-300 mb-1">Detected Targets</h2>
-        <p className="text-purple-200">
-          Red Dots: <b>{pointsData.length}</b>
-        </p>
-        <p className="text-gray-300 mt-1">Each red dot marks a detected IP location.</p>
+          arcsData={arcsData}
+          arcStartLat={(d) => d.startLat}
+          arcStartLng={(d) => d.startLng}
+          arcEndLat={(d) => d.endLat}
+          arcEndLng={(d) => d.endLng}
+          arcColor={(d) => d.color}
+          arcDashLength={(d) => d.dashLength}
+          arcDashGap={1}
+          arcDashAnimateTime={1500}
+          arcAltitude={0.25}
+          arcStroke={(d) => d.stroke}
+
+          showAtmosphere
+          atmosphereColor="rgba(120, 0, 255, 0.4)"
+          atmosphereAltitude={0.25}
+
+          onPointClick={cameraShake}
+          onArcClick={cameraShake}
+        />
+
+        {/* INFO CARD */}
+        <div className="absolute left-6 bottom-6 p-4 bg-black/40 backdrop-blur-lg rounded-xl border border-purple-500/40 shadow-[0_0_25px_rgba(168,85,247,0.5)] w-72 z-20">
+          <h2 className="font-bold text-purple-300 mb-1">Detected Targets</h2>
+          <p className="text-purple-200">
+            Red Dots: <b>{pointsData.length}</b>
+          </p>
+          <p className="text-gray-300 mt-1">Each red dot marks a detected IP location.</p>
+        </div>
+
       </div>
-
-    </div>
     </>
   );
 }

@@ -12,7 +12,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto grid gap-10 md:grid-cols-3">
 
           {/* Contact Details */}
-          <div>
+          <div id="contact">
             <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
             <p className="text-gray-300">Email: blueranger@socsystem.com</p>
             <p className="text-gray-300">Phone: +91 98765 43210</p>

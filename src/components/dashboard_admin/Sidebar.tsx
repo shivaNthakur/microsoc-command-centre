@@ -14,10 +14,10 @@ import {
 // Menu list
 const menu = [
   { name: "Dashboard", icon: <Home size={20} />, route: "/admin/dashboard" },
-  { name: "Analysts", icon: <Users size={20} />, route: "/analyst/dashboard" },
+  { name: "Analysts", icon: <Users size={20} />, route: "/analyst/Analysts" },
   { name: "Settings", icon: <Settings size={20} />, route: "settings" },
   { name: "Notifications", icon: <Bell size={20} />, route: "/admin/notifications" },
-  { name: "Help", icon: <HelpCircle size={20} />, route: "help" },
+  { name: "Help", icon: <HelpCircle size={20} />, route: "/#contact" },
 ];
 
 export default function Sidebar() {
@@ -118,10 +118,11 @@ export default function Sidebar() {
       return;
     }
 
-    if (item.route === "help") {
-      alert("Help section coming soon…");
-      return;
-    }
+    if (item.route.startsWith("/#")) {
+  window.location.href = item.route;  // Direct jump to landing page footer
+  return;
+}
+
 
     router.push(item.route);
   };
