@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useRouter } from "next/navigation";
-import Image from "next/image"; // Import Next.js Image component for optimization
+import { motion } from "framer-motion";
+import AttackModal from "./AttackModal";
 
 // 1. UPDATE INTERFACE to include photoUrl
 interface Attack {
@@ -30,75 +29,53 @@ const attacks: Attack[] = [
 ];
 
 export default function AttackCards() {
-  const [expanded, setExpanded] = useState<number | null>(null);
-  const router = useRouter();
+  const [selectedAttack, setSelectedAttack] = useState<Attack | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Helper function to find the expanded attack details
-  const expandedAttack = attacks.find((a) => a.id === expanded);
+  const handleCardClick = (attack: Attack) => {
+    setSelectedAttack(attack);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedAttack(null), 300);
+  };
 
   return (
-    <div className="relative w-full mt-12">
-      
-      {/* GRID 2x5 RESPONSIVE (NO CHANGE HERE) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-        {attacks.map((atk) => (
-          <motion.div
-            key={atk.id}
-            layoutId={`attack-${atk.id}`}
-            onMouseEnter={() => setExpanded(atk.id)}
-            className="p-5 bg-[#0b1220] border border-blue-900/40 
-                        rounded-xl cursor-pointer hover:scale-105 transition shadow-lg"
-          >
-            <h2 className="text-xl font-semibold text-blue-300">{atk.name}</h2>
-            <p className="text-gray-400 mt-2">{atk.shortDesc}</p>
-          </motion.div>
-        ))}
+    <>
+      {/* Attack Cards Grid */}
+      <div className="relative w-full mt-12">
+        <h2 className="text-2xl font-bold text-blue-400 mb-6">Attack Types</h2>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          {attacks.map((atk) => (
+            <motion.div
+              key={atk.id}
+              onClick={() => handleCardClick(atk)}
+              whileHover={{ scale: 1.05, y: -5 }}
+              whileTap={{ scale: 0.98 }}
+              className="p-5 bg-gradient-to-br from-[#0b1220] to-black border border-blue-900/40 
+                          rounded-xl cursor-pointer shadow-lg hover:border-blue-700/60 transition"
+            >
+              <h3 className="text-lg font-semibold text-blue-300 mb-2">{atk.name}</h3>
+              <p className="text-sm text-gray-400 leading-relaxed">{atk.shortDesc}</p>
+              
+              {/* Click Indicator */}
+              <div className="mt-4 text-xs text-gray-500">
+                Click to learn more →
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
 
-      {/* FULLSCREEN OVERLAY WITH CENTERED CARD */}
-      <AnimatePresence>
-        {expanded !== null && expandedAttack && (
-          <motion.div
-            className="fixed inset-0 bg-black/70 backdrop-blur-md z-50 
-                        flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            {/* EXPANDED CARD */}
-            <motion.div
-              layoutId={`attack-${expanded}`}
-              onMouseLeave={() => setExpanded(null)}   
-              className="bg-[#0b1220] border border-blue-900/40 rounded-2xl 
-                          shadow-2xl text-center max-w-xl w-80 overflow-hidden"
-            >
-              
-              {/* 3. REPLACE H2 WITH IMAGE */}
-              <div className="flex mb-2 w-80 h-36 overflow-hidden rounded-t-xl">
-                <img
-                  src={expandedAttack.photoUrl} // Use the new photoUrl
-                  alt={expandedAttack.name}     // Use the attack name as alt text
-                
-                  className="rounded-lg object-cover h-full w-80"
-                />
-              </div>
-                           
-              <p className="text-gray-300 leading-relaxed mb-2 w-[30%] p-10">
-                {expandedAttack.longDesc}
-              </p>
-
-              <button
-                onClick={() => router.push(expandedAttack.route)}
-                className="px-3 py-3 bg-blue-600 hover:bg-blue-700 
-                            rounded-xl text-white text-lg p-10 mb-5"
-              > 
-                 View Details →
-              </button> 
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-    </div>
+      {/* Attack Modal */}
+      <AttackModal 
+        isOpen={isModalOpen} 
+        onClose={handleCloseModal} 
+        attack={selectedAttack}
+      />
+    </>
   );
 }

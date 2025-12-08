@@ -124,7 +124,6 @@ export default function AnalystDashboard() {
         <div className="p-6">
           <AttackCards />
         </div>
-
       </div>
     </>
   );
