@@ -9,6 +9,9 @@ html.dark {
   background-color: #020617;
   color: white;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 html.light {
   background-color: white;

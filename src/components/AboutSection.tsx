@@ -3,7 +3,7 @@ import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 
 const AboutSection = () => {
   return (
-    <div className='bg-black'>
+    <div id="about" className='bg-black'>
       <h1 className='text-4xl text-center py-20 font-bold text-gray-900 dark:text-white'>
         About Cyber Defenders
       </h1>

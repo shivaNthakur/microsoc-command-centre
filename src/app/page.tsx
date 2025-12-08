@@ -3,6 +3,7 @@ import AboutSection from "@/components/AboutSection";
 import HeroSection from "@/components/HeroSection";
 import Navbar from "@/components/NavBar";
 import FeaturesSection from "@/components/FeaturesSection"
+import FooterSection from "@/components/FooterSection"
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -16,6 +17,7 @@ export default function LandingPage() {
     </main>
     <AboutSection></AboutSection>
     <FeaturesSection></FeaturesSection>
+    <FooterSection></FooterSection>
     </>
   );
 }

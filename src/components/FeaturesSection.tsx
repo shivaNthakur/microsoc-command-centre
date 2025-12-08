@@ -66,7 +66,7 @@ const content = [
 
 const FeaturesSection = () => {
   return (
-    <div className="w-full py-4 bg-black">
+    <div className="w-full py-4 bg-black" id="features">
       <h1 className='text-4xl text-center py-20 font-bold text-gray-900 dark:text-white'>Our Features</h1>
       <StickyScroll content={content} />
     </div>
