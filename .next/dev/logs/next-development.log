@@ -1,0 +1,418 @@
+[00:00:02.340] Server  LOG      ✓ Ready in 1666ms
+[00:00:05.624] Server  LOG      ○ Compiling /analyst/dashboard ...
+[00:00:11.084] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:12.840] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/analyst/d..." tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} ...>
+          <SegmentViewNode type="page" pagePath="analyst/da...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function AnalystDashboard} serverProvidedParams={{...}}>
+              <AnalystDashboard params={Promise} searchParams={Promise}>
+                <Topbar>
+                <div className="w-full min...">
+                  <div>
+                  <div className="p-6">
+                    <AttackCards>
+                      <div className="relative w...">
+                        <div className="grid grid-...">
+                          <motion.div layoutId="attack-1" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                          <motion.div layoutId="attack-2" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                          <motion.div layoutId="attack-3" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                          <motion.div layoutId="attack-4" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                          <motion.div layoutId="attack-5" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                          <motion.div layoutId="attack-6" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                          <motion.div layoutId="attack-7" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                          <motion.div layoutId="attack-8" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                          <motion.div layoutId="attack-9" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                          <motion.div layoutId="attack-10" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                        ...
+                  ...
+          ...
+        ...
+
+[00:00:12.841] Browser LOG     WS connected to ws://127.0.0.1:8000/ws/incidents
+[00:00:12.841] Browser LOG     {}
+[00:01:06.766] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:06.997] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/analyst/d..." tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} ...>
+          <SegmentViewNode type="page" pagePath="analyst/da...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function AnalystDashboard} serverProvidedParams={{...}}>
+              <AnalystDashboard params={Promise} searchParams={Promise}>
+                <Topbar>
+                <div className="w-full min...">
+                  <div>
+                  <div className="p-6">
+                    <AttackCards>
+                      <div className="relative w...">
+                        <div className="grid grid-...">
+                          <motion.div layoutId="attack-1" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                          <motion.div layoutId="attack-2" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                          <motion.div layoutId="attack-3" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                          <motion.div layoutId="attack-4" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                          <motion.div layoutId="attack-5" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                          <motion.div layoutId="attack-6" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                          <motion.div layoutId="attack-7" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                          <motion.div layoutId="attack-8" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                          <motion.div layoutId="attack-9" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                          <motion.div layoutId="attack-10" ...>
+                            <MeasureLayout>
+                            <div
+                              onMouseEnter={function AttackCards[attacks.map() > <motion.div>.onMouseEnter]}
++                             className={"p-5 bg-[#0b1220] border border-blue-900/40 \r\n                        roun..."}
+-                             className="p-5 bg-[#0b1220] border border-blue-900/40    rounded-xl cursor-pointer hover..."
+                              style={{}}
+                              ref={function useMotionRef.useCallback}
+                            >
+                        ...
+                  ...
+          ...
+        ...
+
+[00:01:06.998] Browser LOG     WS connected to ws://127.0.0.1:8000/ws/incidents
+[00:01:07.402] Browser LOG     {}
+[00:06:29.185] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.193] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.208] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.219] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.223] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.225] Server  ERROR    ⨯ "unhandledRejection:" Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.228] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.229] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.231] Server  ERROR    ⨯ "unhandledRejection: " Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.240] Server  LOG      ✓ Compiled in 1037ms
+[00:06:29.336] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.345] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.347] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.351] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.352] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.353] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.406] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.407] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.408] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.410] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.414] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.417] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.443] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.446] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.448] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.452] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.458] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.460] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.488] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.489] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.490] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.491] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.493] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.497] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.515] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.516] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.517] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.520] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.520] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.521] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.539] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.539] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.540] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.541] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.541] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.542] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.561] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.561] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.562] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.565] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.566] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.567] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.582] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.582] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.583] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.587] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.587] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.588] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.633] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.635] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.636] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.637] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.638] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.639] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.671] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.672] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.673] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.677] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.678] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.679] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.701] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.703] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.705] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.708] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.710] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.712] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.734] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.735] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.738] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.741] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.742] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.746] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.780] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.780] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.781] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.782] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.782] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.783] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.799] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.801] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.802] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.803] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.804] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.804] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.850] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.851] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.851] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.852] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.853] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.853] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.866] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.867] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.868] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.870] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.871] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.872] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.887] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.887] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.888] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.891] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.892] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.892] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.907] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.908] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.909] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.912] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.913] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.913] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.927] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.928] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.929] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.929] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.930] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.930] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.942] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.942] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.943] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.946] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.947] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.948] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.958] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.960] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.961] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.962] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.963] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.963] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.977] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.978] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.979] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.981] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.982] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.983] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:29.998] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.999] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:29.999] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:30.002] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:30.003] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:30.004] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:30.018] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:30.018] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:30.019] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:30.020] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:30.021] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:30.022] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:30.033] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:30.033] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:30.034] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:30.036] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:30.037] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:30.038] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:30.171] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:30.172] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:30.172] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
+[00:06:30.174] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\lib\recursive-readdir.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:30.176] Server  ERROR   C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\node_modules\next\dist\server\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:06:30.178] Server  ERROR   Error: ENOENT: no such file or directory, scandir 'C:\Users\gaurs\OneDrive\Desktop\Attack_SOC\MICROSOC-COMMAND-CENTRE\src\app'
