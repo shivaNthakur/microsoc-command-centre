@@ -1,6 +1,6 @@
 from attacks.common.log_utils import send_log
 
-for i in range(10):
+for i in range(30):
     log = {
         "tool": "brute_force",
         "username": "admin",
