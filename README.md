@@ -243,3 +243,11 @@ npm install react react-dom next socket.io-client axios zustand recharts lucide-
 
 npm install -D tailwindcss postcss autoprefixer
 
+# UI Overview
+
+<img width="1867" height="783" alt="image" src="https://github.com/user-attachments/assets/5f2ad5ad-65b2-44dc-8fa3-25c190ad6f52" />
+
+<img width="1024" height="471" alt="image" src="https://github.com/user-attachments/assets/047e03af-a847-49b4-887f-224aa1f72f98" />
+
+
+
