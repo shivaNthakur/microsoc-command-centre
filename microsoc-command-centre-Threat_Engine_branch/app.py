@@ -1,4 +1,4 @@
-# app.py
+
 from fastapi import FastAPI
 import asyncio, time, json, os, requests
 from classifier import classify_request
@@ -10,7 +10,7 @@ import redis
 load_dotenv()
 app = FastAPI(title="P3 Threat Detection Engine (Decision API)")
 
-# ---------------- CONFIG ----------------
+
 REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
 REDIS_PORT = int(os.getenv("REDIS_PORT", 6379))
 LOG_QUEUE = "attack_logs_queue"
@@ -37,11 +37,10 @@ try:
     r.ping()
     print("✓ Redis connected successfully")
 except Exception as e:
-    print(f"⚠️  Redis connection failed: {e}")
+    print(f"Redis connection failed: {e}")
     r = None
 BLOCK_DURATION = int(os.getenv("BLOCK_DURATION", "600"))
 
-# ---------------- RESPONSE MAKER ----------------
 def make_response(ip, path, method, status, result):
     return {
         "ip": ip,
@@ -56,7 +55,7 @@ def make_response(ip, path, method, status, result):
         "is_blocked_now": result.get("is_blocked_now", False)
     }
 
-# ---------------- API ROUTES ----------------
+
 @app.get("/")
 def home():
     return {"message": "P3 Threat Detection Engine Running"}
@@ -82,7 +81,7 @@ async def security_decision(data: dict):
 
     resp = make_response(ip, path, method, status, result)
 
-    # ---------------- LOG HANDLING ----------------
+    
     try:
         if r:
             r.lpush(LOG_QUEUE, json.dumps(resp))
@@ -94,7 +93,6 @@ async def security_decision(data: dict):
         import traceback
         traceback.print_exc()
 
-    # ALLOW requests can also be written immediately
     if status == "ALLOW":
         try:
             if attack_logs:
@@ -105,10 +103,9 @@ async def security_decision(data: dict):
 
     return resp
 
-# ---------------- BACKGROUND WORKER ----------------
 async def mongo_writer_worker():
     print("🔥 Mongo Writer Worker started")
-    print(f"   Redis: {'✅ Connected' if r else '❌ Not connected'}")
+    print(f"   Redis: {'Connected' if r else '❌ Not connected'}")
     print(f"   MongoDB: {'✅ Connected' if attack_logs else '❌ Not connected'}")
     print(f"   Backend URL: {BACKEND_URL}")
     
