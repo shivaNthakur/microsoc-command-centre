@@ -1,2 +1,2 @@
-require('ts-node/register/transpile-only');
-require('./src/socket/socket-server.js');
+require("ts-node/register");   // allow running TypeScript
+require("./src/socket/socket-server.ts");
