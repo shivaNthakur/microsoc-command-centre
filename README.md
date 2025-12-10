@@ -79,6 +79,7 @@ The system monitors **10 cyber-attacks**, processes logs in real time, generates
   "related_logs": []
 }
 ```
+```
 📁 Folder Structure
 1️⃣ Python Attack Scripts
 attacks/
@@ -231,7 +232,7 @@ microsoc-command-centre/
 │   ├── socket/
 │   ├── types/
 │   └── utils/
-
+```
 📦 Packages to Install
 
 Python
@@ -245,9 +246,28 @@ npm install -D tailwindcss postcss autoprefixer
 
 # UI Overview
 
+=> Landing Page
+
+<img width="1891" height="848" alt="image" src="https://github.com/user-attachments/assets/503af3d5-6630-4bcd-bea3-ca81ab2ab584" />
+
+=> About Section
+
 <img width="1867" height="783" alt="image" src="https://github.com/user-attachments/assets/5f2ad5ad-65b2-44dc-8fa3-25c190ad6f52" />
 
+=> Locations on Globe
+
 <img width="1024" height="471" alt="image" src="https://github.com/user-attachments/assets/047e03af-a847-49b4-887f-224aa1f72f98" />
+
+=> Attacks
+
+<img width="1896" height="866" alt="image" src="https://github.com/user-attachments/assets/6b6f1038-1f73-4411-b30e-932877eca009" />
+
+
+=> Future Admin and Analyst Dashboard
+
+<img width="1887" height="936" alt="image" src="https://github.com/user-attachments/assets/52748bce-a5c5-4260-a295-8aa8f14776eb" />
+
+<img width="1888" height="864" alt="image" src="https://github.com/user-attachments/assets/39e0bc15-9434-4a3c-97e6-a3dd7b7e8d27" />
 
 
 
